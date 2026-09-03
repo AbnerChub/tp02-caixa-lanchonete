@@ -56,7 +56,7 @@ public class Principal {
     }
 
     public static void exibirCabecalho() {
-        System.out.println("=================================");
+        System.out.println("**********************************");
         System.out.println("         Lanchonete do bairro         ");
         System.out.println("=================================");
     }
