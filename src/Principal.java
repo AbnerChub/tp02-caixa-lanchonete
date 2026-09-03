@@ -2,73 +2,7 @@ import java.util.Scanner;
 
 public class Principal {
 
-    public static void main(String[] args) {
-
-        Scanner entrada = new Scanner(System.in);
-
-        int opcao;
-
-        do {
-            exibirCabecalho();
-            exibirMenu();
-
-            opcao = entrada.nextInt();
-
-            switch (opcao) {
-
-                case 1:
-                    exibirCardapio();
-                    break;
-
-                case 2:
-                    adicionarProduto(entrada);
-                    break;
-
-                case 3:
-                    exibirPedido();
-                    break;
-
-                case 0:
-                    System.out.println("Encerrando...");
-                    break;
-
-                default:
-                    System.out.println("Opcao invalida!");
-            }
-
-        } while (opcao != 0);
-
-        entrada.close();
-    }
-
-    // ==============================
-    // CABECALHO
-    // ==============================
-
-    public static void exibirCabecalho() {
-
-        System.out.println("============================");
-        System.out.println("      LANCHONETE DO BAIRRO");
-        System.out.println("============================");
-    }
-
-    // ==============================
-    // MENU
-    // ==============================
-
-    public static void exibirMenu() {
-
-        System.out.println();
-        System.out.println("1 - Ver cardapio");
-        System.out.println("2 - Adicionar produto ao pedido");
-        System.out.println("3 - Ver pedido");
-        System.out.println("0 - Sair");
-        System.out.print("Escolha: ");
-    }
-
-    // ==============================
-    // CARDAPIO
-    // ==============================
+    static Scanner entrada = new Scanner(System.in);
 
     static String[] produtos = {
         "X-Burguer",
@@ -88,10 +22,56 @@ public class Principal {
 
     static int[] quantidades = new int[5];
 
+    public static void main(String[] args) {
+        int opcao;
+
+        do {
+            exibirCabecalho();
+            exibirMenu();
+            opcao = entrada.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    exibirCardapio();
+                    break;
+
+                case 2:
+                    adicionarProduto();
+                    break;
+
+                case 3:
+                    exibirPedido();
+                    break;
+
+                case 0:
+                    System.out.println("Saindo do sistema...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        } while (opcao != 0);
+
+        entrada.close();
+    }
+
+    public static void exibirCabecalho() {
+        System.out.println("=================================");
+        System.out.println("         Lanchonete do bairro         ");
+        System.out.println("=================================");
+    }
+
+    public static void exibirMenu() {
+        System.out.println("1 - Ver cardápio");
+        System.out.println("2 - Adicionar produto ao pedido");
+        System.out.println("3 - Ver pedido");
+        System.out.println("0 - Sair");
+    }
+
     public static void exibirCardapio() {
 
         System.out.println();
-        System.out.println("---------- CARDAPIO ----------");
+        System.out.println("---------- CARDÁPIO ----------");
 
         for (int i = 0; i < produtos.length; i++) {
 
@@ -106,19 +86,15 @@ public class Principal {
         System.out.println("------------------------------");
     }
 
-    // ==============================
-    // ADICIONAR PRODUTO
-    // ==============================
-
-    public static void adicionarProduto(Scanner entrada) {
+    public static void adicionarProduto() {
 
         exibirCardapio();
 
-        System.out.print("Digite o codigo do produto: ");
+        System.out.print("Digite o código do produto: ");
         int codigo = entrada.nextInt();
 
         if (!codigoValido(codigo)) {
-            System.out.println("Codigo de produto invalido!");
+            System.out.println("Código de produto inválido!");
             return;
         }
 
@@ -141,10 +117,6 @@ public class Principal {
         );
     }
 
-    // ==============================
-    // VALIDAR CODIGO
-    // ==============================
-
     public static boolean codigoValido(int codigo) {
 
         if (codigo >= 1 && codigo <= produtos.length) {
@@ -154,10 +126,6 @@ public class Principal {
         return false;
     }
 
-    // ==============================
-    // VALIDAR QUANTIDADE
-    // ==============================
-
     public static boolean quantidadeValida(int quantidade) {
 
         if (quantidade > 0) {
@@ -166,10 +134,6 @@ public class Principal {
 
         return false;
     }
-
-    // ==============================
-    // EXIBIR PEDIDO
-    // ==============================
 
     public static void exibirPedido() {
 
